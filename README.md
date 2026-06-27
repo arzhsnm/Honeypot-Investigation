@@ -2,7 +2,7 @@
 
 ---
 
-# 🍯 Honeypot Investigation — CTF Writeup
+#  Honeypot Investigation — CTF Writeup
 
 **Категория:** Forensics | **Очки:** 1000  
 **Платформа:** RTEAM  
@@ -11,7 +11,7 @@
 
 ---
 
-## 📋 Задание
+##  Задание
 
 > Кто-то попался на наш ханипот. Логи сохранились, кроме связанных с запуском cmd.
 > 1. Какой потенциальный IP адрес атакующего?
@@ -20,7 +20,7 @@
 
 ---
 
-## 🛠️ Инструменты
+##  Инструменты
 
 - [Docker Desktop для Windows](https://www.docker.com/products/docker-desktop/)
 - [docker-elk](https://github.com/deviantony/docker-elk) — готовый ELK стек
@@ -30,7 +30,7 @@
 
 ---
 
-## ⚙️ Подготовка окружения
+##  Подготовка окружения
 
 ### Шаг 1: Поднимаем ELK в Docker
 
@@ -114,7 +114,7 @@ got 10000 objects from source file (offset: 10000)
 
 ---
 
-## 🔍 Структура логов
+##  Структура логов
 
 | Лог файл | Что содержит | Зачем нужен |
 |----------|-------------|-------------|
@@ -125,7 +125,7 @@ got 10000 objects from source file (offset: 10000)
 
 ---
 
-## 🎯 Решение
+##  Решение
 
 ### Вопрос 1: IP атакующего
 
@@ -152,7 +152,7 @@ winlog.event_id: "4625"
 source.ip: "85.116.125.143" AND winlog.event_id: "4624"
 ```
 
-**✅ Ответ: `85.116.125.143`**
+** Ответ: `85.116.125.143`**
 
 ---
 
@@ -177,7 +177,7 @@ process.name: *Veeam*
 **Почему VeeamAuth.exe?**  
 Уязвимость **CVE-2023-27532** в Veeam Backup & Replication позволяет через `VeeamAuth.exe` получить зашифрованные credentials из базы данных без аутентификации, используя порт 9401.
 
-**✅ Ответ: `VeeamAuth.exe`**
+** Ответ: `VeeamAuth.exe`**
 
 ---
 
@@ -214,11 +214,11 @@ winlog.event_id: 4722
 | 20:33:41 | 4722 | Активация отключённого аккаунта `Guest` |
 | 20:33:44 | 4732 | Добавление `Guest` в группу `Administrators` |
 
-**✅ Ответ: `Guest`**
+** Ответ: `Guest`**
 
 ---
 
-## 🗂️ Финальные ответы
+##  Финальные ответы
 
 | # | Вопрос | Ответ |
 |---|--------|-------|
@@ -228,7 +228,7 @@ winlog.event_id: 4722
 
 ---
 
-## 🔎 Дополнительные находки (бонус для кураторов)
+##  Дополнительные находки (бонус для кураторов)
 
 | Параметр | Значение |
 |----------|----------|
@@ -243,7 +243,7 @@ winlog.event_id: 4722
 
 ---
 
-## 📖 Полезные ссылки
+##  Полезные ссылки
 
 - [CISA Advisory AA24-109A — Akira Ransomware](https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-109a)
 - [CVE-2023-27532 — Veeam Authentication Bypass](https://www.cvedetails.com/cve/CVE-2023-27532/)
